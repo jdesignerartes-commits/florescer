@@ -29,7 +29,7 @@ export function RestTimer({
   }, [remaining, running]);
 
   return (
-    <div className="flex flex-col items-center gap-3 rounded-2xl bg-marrom px-5 py-6 text-branco-quente">
+    <div className="flex flex-col items-center gap-3 rounded-2xl bg-marinho px-5 py-6 text-branco-quente">
       <p className="text-xs tracking-wide uppercase opacity-75">Descanso</p>
       <p className="text-4xl font-medium tabular-nums">{remaining}s</p>
       <div className="flex gap-2">

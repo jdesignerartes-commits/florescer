@@ -98,7 +98,7 @@ export function EstatisticasView() {
 
       <Link
         href="/jardim"
-        className="flex items-center gap-3 rounded-2xl bg-marrom px-4 py-3.5 text-branco-quente shadow-sm transition-opacity hover:opacity-90"
+        className="flex items-center gap-3 rounded-2xl bg-marinho px-4 py-3.5 text-branco-quente shadow-sm transition-opacity hover:opacity-90"
       >
         <span className="text-2xl">{current.emoji}</span>
         <div className="flex-1">

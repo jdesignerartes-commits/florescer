@@ -10,7 +10,7 @@ export function HealthSummaryCard() {
   return (
     <div className="flex items-center gap-3 rounded-2xl bg-card px-4 py-3.5 shadow-sm ring-1 ring-foreground/[0.06]">
       <Link href="/saude" className="flex min-w-0 flex-1 items-start gap-3">
-        <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-full bg-rose/15 text-rose">
+        <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-full bg-marigold/15 text-marigold">
           <HeartPulse className="size-4" />
         </span>
         <div className="min-w-0 flex-1">

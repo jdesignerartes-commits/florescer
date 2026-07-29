@@ -20,7 +20,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-full md:flex">
       <aside className="hidden md:flex md:w-60 md:shrink-0 md:flex-col md:gap-5 md:overflow-y-auto md:border-r md:border-sidebar-border md:bg-sidebar md:p-4">
         <div className="flex items-center gap-2 px-2 pt-1">
-          <span className="text-xl">🌿</span>
           <span className="font-heading text-lg font-medium text-sidebar-foreground">
             Florescer
           </span>
@@ -59,13 +58,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
       <div className="flex min-h-full flex-1 flex-col">
         <header className="flex items-center gap-2 border-b border-border px-5 py-3.5 md:hidden">
-          <span className="text-lg">🌿</span>
           <span className="font-heading text-base font-medium">Florescer</span>
         </header>
 
         <main className="flex-1 pb-24 md:pb-0">{children}</main>
 
-        <nav className="fixed inset-x-4 bottom-5 z-10 flex items-center justify-between rounded-3xl bg-marrom px-2 py-2 shadow-lg shadow-marrom/30 md:hidden">
+        <nav className="fixed inset-x-4 bottom-5 z-10 flex items-center justify-between rounded-3xl bg-marinho px-2 py-2 shadow-lg shadow-marinho/30 md:hidden">
           {primaryNavItems.map((item) => {
             const active = isNavItemActive(pathname, item.href);
             return (

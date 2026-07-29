@@ -24,7 +24,7 @@ export function ComingSoon({
         </h1>
       </div>
 
-      <div className="relative overflow-hidden rounded-2xl bg-marrom px-5 py-5 text-branco-quente">
+      <div className="relative overflow-hidden rounded-2xl bg-marinho px-5 py-5 text-branco-quente">
         <span aria-hidden className="absolute -right-3 -top-3 text-6xl opacity-15">
           🌱
         </span>

@@ -62,7 +62,7 @@ export function HojeView() {
       )}
 
       {todaysActivities.length === 0 ? (
-        <div className="relative overflow-hidden rounded-2xl bg-marrom px-5 py-8 text-center text-branco-quente">
+        <div className="relative overflow-hidden rounded-2xl bg-marinho px-5 py-8 text-center text-branco-quente">
           <span aria-hidden className="text-4xl">
             🌿
           </span>

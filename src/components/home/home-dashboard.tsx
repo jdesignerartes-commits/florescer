@@ -218,7 +218,7 @@ export function HomeDashboard() {
       </div>
 
       {message && (
-        <div className="relative overflow-hidden rounded-2xl bg-marrom px-5 py-4 text-branco-quente">
+        <div className="relative overflow-hidden rounded-2xl bg-marinho px-5 py-4 text-branco-quente">
           <span aria-hidden className="absolute -right-3 -top-3 text-5xl opacity-15">
             🌿
           </span>
@@ -227,7 +227,7 @@ export function HomeDashboard() {
       )}
 
       {todaysActivities.length === 0 ? (
-        <div className="relative overflow-hidden rounded-2xl bg-marrom px-5 py-8 text-center text-branco-quente">
+        <div className="relative overflow-hidden rounded-2xl bg-marinho px-5 py-8 text-center text-branco-quente">
           <span aria-hidden className="text-4xl">
             🌿
           </span>
