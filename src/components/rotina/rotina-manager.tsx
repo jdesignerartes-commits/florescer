@@ -9,7 +9,7 @@ import { type Activity, PRIORITY_LABELS, recurrenceSummary } from "@/types/activ
 import { cn } from "@/lib/utils";
 
 export function RotinaManager() {
-  const { activities, addActivity, updateActivity, deleteActivity } =
+  const { activities, addActivity, updateActivity, deleteActivity, status } =
     useActivities();
   const [formOpen, setFormOpen] = useState(false);
   const [editing, setEditing] = useState<Activity | null>(null);
@@ -66,7 +66,7 @@ export function RotinaManager() {
         </div>
       </div>
 
-      {activities.length === 0 ? (
+      {status === "loading" ? null : activities.length === 0 ? (
         <div className="relative overflow-hidden rounded-2xl bg-marinho px-5 py-8 text-center text-branco-quente">
           <span aria-hidden className="text-4xl">
             🌱

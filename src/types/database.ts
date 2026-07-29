@@ -46,6 +46,7 @@ export interface Database {
           updated_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["profiles"]["Insert"]>;
+        Relationships: [];
       };
       life_areas: {
         Row: {
@@ -63,6 +64,7 @@ export interface Database {
           sort_order?: number;
         };
         Update: Partial<Database["public"]["Tables"]["life_areas"]["Insert"]>;
+        Relationships: [];
       };
       activities: {
         Row: {
@@ -102,6 +104,7 @@ export interface Database {
           updated_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["activities"]["Insert"]>;
+        Relationships: [];
       };
       activity_logs: {
         Row: {
@@ -131,6 +134,7 @@ export interface Database {
           created_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["activity_logs"]["Insert"]>;
+        Relationships: [];
       };
       day_entries: {
         Row: {
@@ -164,6 +168,7 @@ export interface Database {
           updated_at?: string;
         };
         Update: Partial<Database["public"]["Tables"]["day_entries"]["Insert"]>;
+        Relationships: [];
       };
     };
     Views: {
@@ -177,6 +182,7 @@ export interface Database {
           activities_total: number | null;
           all_required_done: boolean | null;
         };
+        Relationships: [];
       };
       garden_days: {
         Row: {
@@ -184,12 +190,14 @@ export interface Database {
           entry_date: string;
           grew: boolean | null;
         };
+        Relationships: [];
       };
       current_streak: {
         Row: {
           user_id: string;
           streak_days: number;
         };
+        Relationships: [];
       };
       garden_progress: {
         Row: {
@@ -197,6 +205,7 @@ export interface Database {
           total_growth_days: number;
           stage: GardenStage;
         };
+        Relationships: [];
       };
       life_area_engagement: {
         Row: {
@@ -206,8 +215,10 @@ export interface Database {
           points_earned: number | null;
           activities_completed: number | null;
         };
+        Relationships: [];
       };
     };
+    Functions: Record<string, never>;
   };
 }
 

@@ -46,7 +46,12 @@ function getGreeting() {
 }
 
 export function HomeDashboard() {
-  const { todaysActivities, todayCompleted, toggleToday } = useActivities();
+  const {
+    todaysActivities,
+    todayCompleted,
+    toggleToday,
+    status: activitiesStatus,
+  } = useActivities();
   const { todayEarnedScore: exercisePoints } = useExercises();
   const { name, dailyGoalPoints } = useSettings();
   const [mood, setMood] = useState<number | null>(null);
@@ -233,7 +238,7 @@ export function HomeDashboard() {
         </div>
       )}
 
-      {todaysActivities.length === 0 ? (
+      {activitiesStatus === "loading" ? null : todaysActivities.length === 0 ? (
         <div className="relative overflow-hidden rounded-2xl bg-marinho px-5 py-8 text-center text-branco-quente">
           <span aria-hidden className="text-4xl">
             🌿

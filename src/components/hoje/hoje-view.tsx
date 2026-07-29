@@ -15,7 +15,7 @@ const dateFormatter = new Intl.DateTimeFormat("pt-BR", {
 });
 
 export function HojeView() {
-  const { todaysActivities, todayCompleted, toggleToday } = useActivities();
+  const { todaysActivities, todayCompleted, toggleToday, status } = useActivities();
 
   const pointsEarned = todaysActivities
     .filter((a) => todayCompleted.has(a.id))
@@ -61,7 +61,7 @@ export function HojeView() {
         </div>
       )}
 
-      {todaysActivities.length === 0 ? (
+      {status === "loading" ? null : todaysActivities.length === 0 ? (
         <div className="relative overflow-hidden rounded-2xl bg-marinho px-5 py-8 text-center text-branco-quente">
           <span aria-hidden className="text-4xl">
             🌿
