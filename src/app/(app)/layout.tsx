@@ -54,7 +54,7 @@ export default async function AppGroupLayout({
   }
 
   return (
-    <SettingsProvider>
+    <SettingsProvider userId={user.id}>
       <ActivitiesProvider userId={user.id}>
         <DayEntryProvider userId={user.id}>
           <VersesProvider>
