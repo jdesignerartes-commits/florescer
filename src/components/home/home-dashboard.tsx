@@ -9,6 +9,7 @@ import { ProgressRing } from "@/components/home/progress-ring";
 import { cn } from "@/lib/utils";
 import { TONE_CLASSES, getLifeArea } from "@/lib/life-areas";
 import { useActivities } from "@/lib/activities-context";
+import { useDayEntry } from "@/lib/day-entry-context";
 import { useSettings } from "@/lib/settings-context";
 import { VerseOfTheDayCard } from "@/components/versiculos/verse-of-the-day-card";
 import { HealthSummaryCard } from "@/components/saude/health-summary-card";
@@ -54,10 +55,20 @@ export function HomeDashboard() {
   } = useActivities();
   const { todayEarnedScore: exercisePoints } = useExercises();
   const { name, dailyGoalPoints } = useSettings();
-  const [mood, setMood] = useState<number | null>(null);
-  const [energy, setEnergy] = useState<number | null>(null);
-  const [intention, setIntention] = useState("");
-  const [checkedIn, setCheckedIn] = useState(false);
+  const { mood, energy, intention, checkedIn, checkIn, editCheckIn } = useDayEntry();
+  const [draftMood, setDraftMood] = useState<number | null>(null);
+  const [draftEnergy, setDraftEnergy] = useState<number | null>(null);
+  const [draftIntention, setDraftIntention] = useState("");
+
+  const effectiveMood = checkedIn ? mood : draftMood;
+  const effectiveEnergy = checkedIn ? energy : draftEnergy;
+
+  function startEditing() {
+    setDraftMood(mood);
+    setDraftEnergy(energy);
+    setDraftIntention(intention);
+    editCheckIn();
+  }
 
   const routinePoints = useMemo(
     () =>
@@ -77,18 +88,18 @@ export function HomeDashboard() {
 
   const message = useMemo(() => {
     if (allCompleted) return "Hoje você cuidou de você. Continue assim.";
-    if (energy !== null && energy <= 2) return "Escolha apenas o essencial.";
-    if (energy !== null && energy >= 4)
+    if (effectiveEnergy !== null && effectiveEnergy <= 2) return "Escolha apenas o essencial.";
+    if (effectiveEnergy !== null && effectiveEnergy >= 4)
       return "Aproveite este momento para realizar sua prioridade.";
-    if (mood !== null && mood <= 2)
+    if (effectiveMood !== null && effectiveMood <= 2)
       return "Hoje talvez você só precise dar o próximo passo.";
     if (todaysActivities.length > 0 && todaysActivities.length <= 3)
       return "Todo avanço importa.";
     return null;
-  }, [allCompleted, energy, mood, todaysActivities.length]);
+  }, [allCompleted, effectiveEnergy, effectiveMood, todaysActivities.length]);
 
-  const selectedMood = MOOD_OPTIONS.find((m) => m.value === mood);
-  const selectedEnergy = ENERGY_OPTIONS.find((e) => e.value === energy);
+  const selectedMood = MOOD_OPTIONS.find((m) => m.value === effectiveMood);
+  const selectedEnergy = ENERGY_OPTIONS.find((e) => e.value === effectiveEnergy);
 
   return (
     <div className="mx-auto flex max-w-xl flex-col gap-5 px-5 py-6 md:py-10">
@@ -117,7 +128,7 @@ export function HomeDashboard() {
 
       {checkedIn ? (
         <button
-          onClick={() => setCheckedIn(false)}
+          onClick={startEditing}
           className="flex items-center gap-2 rounded-2xl bg-card px-4 py-3 text-left text-sm text-muted-foreground shadow-sm ring-1 ring-foreground/[0.06] transition-shadow hover:shadow-md"
         >
           {selectedMood && <span>{selectedMood.emoji}</span>}
@@ -138,11 +149,11 @@ export function HomeDashboard() {
                 {MOOD_OPTIONS.map((opt) => (
                   <button
                     key={opt.value}
-                    onClick={() => setMood(opt.value)}
-                    aria-pressed={mood === opt.value}
+                    onClick={() => setDraftMood(opt.value)}
+                    aria-pressed={draftMood === opt.value}
                     className={cn(
                       "flex flex-1 flex-col items-center gap-1 rounded-lg py-2 text-xl transition-colors",
-                      mood === opt.value ? "bg-secondary" : "hover:bg-muted"
+                      draftMood === opt.value ? "bg-secondary" : "hover:bg-muted"
                     )}
                     title={opt.label}
                   >
@@ -158,11 +169,11 @@ export function HomeDashboard() {
                 {ENERGY_OPTIONS.map((opt) => (
                   <button
                     key={opt.value}
-                    onClick={() => setEnergy(opt.value)}
-                    aria-pressed={energy === opt.value}
+                    onClick={() => setDraftEnergy(opt.value)}
+                    aria-pressed={draftEnergy === opt.value}
                     className={cn(
                       "flex flex-1 flex-col items-center gap-1 rounded-lg py-2 transition-colors",
-                      energy === opt.value ? "bg-secondary" : "hover:bg-muted"
+                      draftEnergy === opt.value ? "bg-secondary" : "hover:bg-muted"
                     )}
                     title={opt.label}
                   >
@@ -178,8 +189,8 @@ export function HomeDashboard() {
             <div>
               <p className="mb-2 text-sm font-medium text-foreground">🌤 Intenção do dia</p>
               <input
-                value={intention}
-                onChange={(e) => setIntention(e.target.value)}
+                value={draftIntention}
+                onChange={(e) => setDraftIntention(e.target.value)}
                 placeholder="Hoje quero..."
                 className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
               />
@@ -187,7 +198,7 @@ export function HomeDashboard() {
                 {INTENTION_SUGGESTIONS.map((s) => (
                   <button
                     key={s}
-                    onClick={() => setIntention(s)}
+                    onClick={() => setDraftIntention(s)}
                     className="rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground hover:border-primary/40 hover:text-foreground"
                   >
                     {s}
@@ -197,8 +208,8 @@ export function HomeDashboard() {
             </div>
 
             <button
-              onClick={() => setCheckedIn(true)}
-              disabled={mood === null || energy === null}
+              onClick={() => draftMood !== null && draftEnergy !== null && checkIn(draftMood, draftEnergy, draftIntention)}
+              disabled={draftMood === null || draftEnergy === null}
               className="rounded-lg bg-primary py-2.5 text-sm font-medium text-primary-foreground transition-opacity disabled:opacity-40"
             >
               Continuar

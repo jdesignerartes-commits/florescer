@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
 import { ActivitiesProvider } from "@/lib/activities-context";
+import { DayEntryProvider } from "@/lib/day-entry-context";
 import { SettingsProvider } from "@/lib/settings-context";
 import { VersesProvider } from "@/lib/verses-context";
 import { HealthProvider } from "@/lib/health-context";
@@ -55,13 +56,15 @@ export default async function AppGroupLayout({
   return (
     <SettingsProvider>
       <ActivitiesProvider userId={user.id}>
-        <VersesProvider>
-          <HealthProvider>
-            <ExercisesProvider>
-              <AppShell>{children}</AppShell>
-            </ExercisesProvider>
-          </HealthProvider>
-        </VersesProvider>
+        <DayEntryProvider userId={user.id}>
+          <VersesProvider>
+            <HealthProvider>
+              <ExercisesProvider>
+                <AppShell>{children}</AppShell>
+              </ExercisesProvider>
+            </HealthProvider>
+          </VersesProvider>
+        </DayEntryProvider>
       </ActivitiesProvider>
     </SettingsProvider>
   );
