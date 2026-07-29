@@ -129,6 +129,11 @@
   --sidebar-ring: #DD8058;
 }
 
+@keyframes exercise-figure-hold {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

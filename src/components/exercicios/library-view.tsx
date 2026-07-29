@@ -7,6 +7,7 @@ import {
   LibrarySafetyBanner,
 } from "@/components/exercicios/exercise-detail-sheet";
 import { EXERCISE_LIBRARY, DIFFICULTY_LABELS, type Exercise } from "@/types/exercise";
+import { ExerciseFigure } from "@/components/exercicios/exercise-figure";
 import { cn } from "@/lib/utils";
 
 const MUSCLE_GROUPS = Array.from(
@@ -76,8 +77,8 @@ export function LibraryView() {
             onClick={() => setSelected(exercise)}
             className="flex flex-col items-center gap-1.5 rounded-2xl bg-card p-3 text-center shadow-sm ring-1 ring-foreground/[0.06] transition-shadow hover:shadow-md"
           >
-            <span className="flex size-11 items-center justify-center rounded-full bg-oliva/15 text-xl">
-              🧘🏽‍♀️
+            <span className="flex size-11 items-center justify-center rounded-full bg-oliva/15 p-1.5">
+              <ExerciseFigure exerciseId={exercise.id} className="h-full" />
             </span>
             <span className="text-xs font-medium text-foreground">
               {exercise.name}

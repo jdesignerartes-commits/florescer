@@ -6,6 +6,7 @@ import { RestTimer } from "@/components/exercicios/rest-timer";
 import { SessionSummarySheet } from "@/components/exercicios/session-summary-sheet";
 import { useExercises } from "@/lib/exercises-context";
 import { getExercise, SAFETY_NOTICE } from "@/types/exercise";
+import { ExerciseFigure } from "@/components/exercicios/exercise-figure";
 import { isExerciseComplete, completeSet } from "@/lib/workout-scoring";
 import { cn } from "@/lib/utils";
 
@@ -81,9 +82,9 @@ export function SessionRunner() {
         <RestTimer seconds={we.restSeconds ?? 30} onDone={() => setRestingFor(null)} />
       ) : (
         <div className="flex flex-col items-center gap-3 rounded-2xl bg-card p-6 text-center shadow-sm ring-1 ring-foreground/[0.06]">
-          <span className="flex size-16 items-center justify-center rounded-full bg-oliva/15 text-3xl">
-            🧘🏽‍♀️
-          </span>
+          <div className="flex aspect-video w-full max-w-[220px] items-center justify-center rounded-xl bg-oliva/10 p-2">
+            <ExerciseFigure exerciseId={we.exerciseId} className="h-full" />
+          </div>
           <h2 className="font-heading text-xl font-medium text-foreground">
             {exercise?.name}
           </h2>

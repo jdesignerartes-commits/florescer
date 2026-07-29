@@ -9,6 +9,7 @@ import {
   SheetDescription,
 } from "@/components/ui/sheet";
 import { type Exercise, DIFFICULTY_LABELS } from "@/types/exercise";
+import { ExerciseFigure } from "@/components/exercicios/exercise-figure";
 
 export function ExerciseDetailSheet({
   exercise,
@@ -30,8 +31,8 @@ export function ExerciseDetailSheet({
             </SheetHeader>
 
             <div className="flex flex-col gap-4 overflow-y-auto px-4 pb-6">
-              <div className="flex aspect-video items-center justify-center rounded-2xl bg-muted text-5xl">
-                🧘🏽‍♀️
+              <div className="flex aspect-video items-center justify-center rounded-2xl bg-muted p-4">
+                <ExerciseFigure exerciseId={exercise.id} className="h-full" />
               </div>
 
               <div className="flex flex-wrap gap-1.5 text-xs">
