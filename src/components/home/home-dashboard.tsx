@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Zap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Progress } from "@/components/ui/progress";
+import { ProgressRing } from "@/components/home/progress-ring";
 import { cn } from "@/lib/utils";
 import { TONE_CLASSES, getLifeArea } from "@/lib/life-areas";
 import { useActivities } from "@/lib/activities-context";
@@ -202,19 +202,26 @@ export function HomeDashboard() {
         </Card>
       )}
 
-      <div>
-        <div className="mb-1.5 flex items-baseline justify-between">
-          <span className="text-sm font-medium text-foreground">Hoje</span>
-          <span className="text-sm tabular-nums text-muted-foreground">
-            {pointsEarned} / {dailyGoalPoints} pontos · {progressPct}%
-          </span>
-        </div>
+      <div className="flex flex-col items-center gap-2 rounded-2xl bg-card px-5 py-6 shadow-sm ring-1 ring-foreground/[0.06]">
+        <p className="text-sm font-medium text-foreground">Hoje</p>
+        <ProgressRing value={pointsEarned} max={dailyGoalPoints}>
+          <div className="flex flex-col items-center">
+            <span className="font-heading text-3xl font-medium text-foreground">
+              {pointsEarned}
+            </span>
+            <span className="text-xs text-muted-foreground">
+              de {dailyGoalPoints} pontos
+            </span>
+          </div>
+        </ProgressRing>
+        <p className="text-sm tabular-nums text-muted-foreground">
+          {progressPct}% da meta
+        </p>
         {exercisePoints > 0 && (
-          <p className="mb-1.5 text-xs tabular-nums text-muted-foreground">
+          <p className="text-xs tabular-nums text-muted-foreground">
             Rotina: {routinePoints} pontos · Exercícios: {exercisePoints} pontos
           </p>
         )}
-        <Progress value={pointsEarned} max={dailyGoalPoints} />
       </div>
 
       {message && (
