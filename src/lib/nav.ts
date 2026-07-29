@@ -10,6 +10,7 @@ import {
   HeartPulse,
   Dumbbell,
   Sprout,
+  Shirt,
   type LucideIcon,
 } from "lucide-react";
 
@@ -50,6 +51,7 @@ export const navGroups: NavGroup[] = [
       { href: "/exercicios", label: "Meus Exercícios", shortLabel: "Exercícios", icon: Dumbbell },
       { href: "/jardim", label: "Jardim da Constância", shortLabel: "Jardim", icon: Sprout },
       { href: "/humor", label: "Humor", icon: Smile },
+      { href: "/estilo", label: "Moda e Estilo", shortLabel: "Estilo", icon: Shirt },
     ],
   },
   {
