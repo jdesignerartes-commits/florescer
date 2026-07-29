@@ -57,7 +57,7 @@ export default async function AppGroupLayout({
     <SettingsProvider userId={user.id}>
       <ActivitiesProvider userId={user.id}>
         <DayEntryProvider userId={user.id}>
-          <VersesProvider>
+          <VersesProvider userId={user.id}>
             <HealthProvider>
               <ExercisesProvider>
                 <AppShell>{children}</AppShell>

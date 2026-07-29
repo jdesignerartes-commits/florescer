@@ -170,6 +170,110 @@ export interface Database {
         Update: Partial<Database["public"]["Tables"]["day_entries"]["Insert"]>;
         Relationships: [];
       };
+      golden_verses: {
+        Row: {
+          id: string;
+          user_id: string;
+          title: string;
+          verse_text: string;
+          book: string;
+          chapter: number | null;
+          verse_number: string | null;
+          bible_version: string | null;
+          reflection: string | null;
+          is_favorite: boolean;
+          audio_url: string | null;
+          transcription_text: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          title: string;
+          verse_text: string;
+          book: string;
+          chapter?: number | null;
+          verse_number?: string | null;
+          bible_version?: string | null;
+          reflection?: string | null;
+          is_favorite?: boolean;
+          audio_url?: string | null;
+          transcription_text?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["golden_verses"]["Insert"]>;
+        Relationships: [];
+      };
+      verse_collections: {
+        Row: {
+          id: string;
+          user_id: string;
+          name: string;
+          description: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          name: string;
+          description?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["verse_collections"]["Insert"]>;
+        Relationships: [];
+      };
+      verse_collection_items: {
+        Row: {
+          id: string;
+          collection_id: string;
+          verse_id: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          collection_id: string;
+          verse_id: string;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["verse_collection_items"]["Insert"]>;
+        Relationships: [];
+      };
+      verse_tags: {
+        Row: {
+          id: string;
+          user_id: string;
+          name: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          name: string;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["verse_tags"]["Insert"]>;
+        Relationships: [];
+      };
+      verse_tag_relations: {
+        Row: {
+          id: string;
+          verse_id: string;
+          tag_id: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          verse_id: string;
+          tag_id: string;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["verse_tag_relations"]["Insert"]>;
+        Relationships: [];
+      };
     };
     Views: {
       daily_points: {

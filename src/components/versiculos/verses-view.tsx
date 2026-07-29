@@ -31,7 +31,7 @@ function sortVerses(verses: Verse[], sort: VerseSort): Verse[] {
 }
 
 export function VersesView() {
-  const { verses, deleteVerse, toggleFavorite } = useVerses();
+  const { verses, deleteVerse, toggleFavorite, status } = useVerses();
   const [formOpen, setFormOpen] = useState(false);
   const [editing, setEditing] = useState<Verse | null>(null);
   const [query, setQuery] = useState("");
@@ -158,7 +158,7 @@ export function VersesView() {
         </div>
       </div>
 
-      {filtered.length === 0 ? (
+      {status === "loading" ? null : filtered.length === 0 ? (
         <div className="relative overflow-hidden rounded-2xl bg-marinho px-5 py-8 text-center text-branco-quente">
           <span aria-hidden className="text-4xl">
             📖
