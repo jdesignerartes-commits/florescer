@@ -1,0 +1,145 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-display);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Paleta de marca — usar diretamente (bg-terracota, text-oliva...) fora dos papéis semânticos acima */
+  --color-terracota: #B56E4A;
+  --color-marrom: #6F4E3D;
+  --color-bege: #E8D8C4;
+  --color-creme: #F7F1E8;
+  --color-caramelo: #C69368;
+  --color-oliva: #8A8B65;
+  --color-rose: #C58C7B;
+  --color-cinza-quente: #A69A8E;
+  --color-branco-quente: #FFFCF7;
+}
+
+:root {
+  --background: #F7F1E8;
+  --foreground: #6F4E3D;
+  --card: #FFFCF7;
+  --card-foreground: #6F4E3D;
+  --popover: #FFFCF7;
+  --popover-foreground: #6F4E3D;
+  --primary: #B56E4A;
+  --primary-foreground: #FFFCF7;
+  --secondary: #E8D8C4;
+  --secondary-foreground: #6F4E3D;
+  --muted: #F1E7DA;
+  --muted-foreground: #8C7566;
+  --accent: #C69368;
+  --accent-foreground: #FFFCF7;
+  --destructive: #B5544A;
+  --border: #E8D8C4;
+  --input: #E8D8C4;
+  --ring: #B56E4A;
+  --chart-1: #B56E4A;
+  --chart-2: #8A8B65;
+  --chart-3: #C69368;
+  --chart-4: #C58C7B;
+  --chart-5: #6F4E3D;
+  --radius: 0.75rem;
+  --sidebar: #FFFCF7;
+  --sidebar-foreground: #6F4E3D;
+  --sidebar-primary: #B56E4A;
+  --sidebar-primary-foreground: #FFFCF7;
+  --sidebar-accent: #F1E7DA;
+  --sidebar-accent-foreground: #6F4E3D;
+  --sidebar-border: #E8D8C4;
+  --sidebar-ring: #B56E4A;
+}
+
+.dark {
+  --background: #241C17;
+  --foreground: #F1E3D3;
+  --card: #2C2119;
+  --card-foreground: #F1E3D3;
+  --popover: #2C2119;
+  --popover-foreground: #F1E3D3;
+  --primary: #E0925F;
+  --primary-foreground: #241C17;
+  --secondary: #3A2E24;
+  --secondary-foreground: #F1E3D3;
+  --muted: #33271E;
+  --muted-foreground: #C4AA95;
+  --accent: #CE9C71;
+  --accent-foreground: #241C17;
+  --destructive: #CE7A6E;
+  --border: #4A3A2E;
+  --input: #4A3A2E;
+  --ring: #E0925F;
+  --chart-1: #E0925F;
+  --chart-2: #B7B98A;
+  --chart-3: #CE9C71;
+  --chart-4: #D9A392;
+  --chart-5: #F1E3D3;
+  --sidebar: #2C2119;
+  --sidebar-foreground: #F1E3D3;
+  --sidebar-primary: #E0925F;
+  --sidebar-primary-foreground: #241C17;
+  --sidebar-accent: #33271E;
+  --sidebar-accent-foreground: #F1E3D3;
+  --sidebar-border: #4A3A2E;
+  --sidebar-ring: #E0925F;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+  h1, h2, h3, h4 {
+    @apply font-heading;
+    text-wrap: balance;
+  }
+}
